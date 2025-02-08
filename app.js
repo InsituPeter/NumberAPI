@@ -87,6 +87,6 @@ res.send("Cannot retrieve funfact")
 
 
 
-    app.use(notFound)
+
 
 app.listen(PORT, ()=>console.log(`Server is listening on ${PORT}`))
