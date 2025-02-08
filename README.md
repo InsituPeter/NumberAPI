@@ -1,51 +1,96 @@
-# Number Classification API
+# Number Properties API
 
 ## Overview
-
-The **Number Classification API** is a backend service that accepts a GET request with a number parameter and returns interesting mathematical properties about the number along with a fun fact. It evaluates whether the number is:
-- **Prime**
-- **Perfect**
-- **Armstrong** (narcissistic; included only when the number qualifies)
-- Even or odd
-
-Additionally, it calculates the **sum of the digits** and retrieves a fun fact from [Numbers API](http://numbersapi.com).
+The **Number Properties API** is a simple RESTful service that analyzes a given number and provides various mathematical properties about it. The API determines whether the number is prime, perfect, or Armstrong, calculates the sum of its digits, and fetches a fun fact from an external API.
 
 ## Features
+- **Check if a number is prime**
+- **Check if a number is perfect**
+- **Check if a number is an Armstrong number**
+- **Determine if the number is even or odd**
+- **Compute the sum of the digits**
+- **Fetch a fun fact about the number**
 
-- **Prime Check:** Determines if the given number is prime.
-- **Perfect Number Check:** Validates if the number is perfect (i.e., the sum of its proper divisors equals the number).
-- **Armstrong Number Check:** Evaluates if the number is an Armstrong number. The `"armstrong"` property is included in the response only if the number qualifies.
-- **Digit Sum Calculation:** Computes the sum of all digits in the number.
-- **Fun Fact:** Fetches an interesting fact about the number from the Numbers API.
-- **CORS Enabled:** Handles cross-origin resource sharing.
-- **JSON Responses:** Returns all responses in JSON format.
-- **Error Handling:** Provides appropriate HTTP status codes for both success and error cases.
+## Technologies Used
+- Node.js
+- Express.js
+- Axios
+- CORS
 
-## API Specification
+## Installation
 
-### Endpoint
-GET  https://numberapi-h8wb.onrender.com/?number=371
-### Successful Response (200 OK)
+1. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd number-properties-api
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
 
+## Usage
+
+### Start the Server
+Run the following command to start the server:
+```sh
+node app.js
+```
+The server will start on `http://localhost:3000` by default.
+
+### API Endpoint
+
+#### GET `/?number={num}`
+Retrieves mathematical properties and a fun fact about the given number.
+
+#### Query Parameters
+- `number` (integer) - The number to analyze.
+
+#### Response Format
 ```json
 {
-  "number": 371,
+  "number": 28,
   "is_prime": false,
-  "is_perfect": false,
-  "properties": ["armstrong", "odd"],
-  "digit_sum": 11,
-  "fun_fact": "371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371"
-}```
-
-###Error Response (400 Bad Request)
-
-{
-  "number": "alphabet",
-  "error": true
+  "is_perfect": true,
+  "properties": ["even"],
+  "digit_sum": 10,
+  "fun_fact": "28 is the second perfect number."
 }
+```
 
-Installation
-1. Clone the repository
-2. Navigate to the project directory
-3. Install dependencies
+### Example Request
+```
+GET http://localhost:3000/api/v1?number=28
+```
+
+## Error Handling
+- If the query parameter is missing or not a valid number, the API returns:
+  ```json
+  {
+    "number": "invalid",
+    "error": true
+  }
+  ```
+- If an issue occurs while fetching the fun fact, the API returns:
+  ```json
+  {
+    "error": "failed to fetch fun fact"
+  }
+  ```
+
+## Project Structure
+```
+number-properties-api/
+│── app.js
+│── controller.js
+│── route.js
+│── package.json
+│── README.md
+```
+
+
+
 
