@@ -44,6 +44,8 @@ const digitSum =(num)=>{
 }
 
 
+//properties
+
 
 app.get("/",  async(req, res)=>{
     const number= req.query.number
@@ -54,13 +56,25 @@ app.get("/",  async(req, res)=>{
        
     }
 
+
+    const properties =[num % 2 === 0 ? "even" : "odd"];
+
+
+if (isArmstrong(num)) {
+    properties.push("armstrong")};
+
    try{ const funfactResponse = await axios.get(`http://numbersapi.com/${num}?json`)
    const funFact= funfactResponse.data.text;
+
+  
+
+
+
    res.status(200).json({
      number : num,
      is_prime:isPrime(num),
      is_perfect:isPerfect(num),
-     properties:[isArmstrong(num) ? "armstrong":"", num%2===0? "even": "odd"].filter(Boolean),
+     properties:properties,
      digit_sum:digitSum(num),
      fun_fact:funFact
    })}
