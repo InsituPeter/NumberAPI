@@ -1,55 +1,31 @@
-# Number Properties API
+# Number API
 
 ## Overview
-The **Number Properties API** is a simple RESTful service that analyzes a given number and provides various mathematical properties about it. The API determines whether the number is prime, perfect, or Armstrong, calculates the sum of its digits, and fetches a fun fact from an external API.
+The **Number API** is a simple yet powerful API that provides mathematical insights and interesting properties about a given number. It evaluates prime status, perfect number classification, Armstrong number identification, parity (odd/even), digit sum, and retrieves a fun fact from an external API.
 
 ## Features
-- **Check if a number is prime**
-- **Check if a number is perfect**
-- **Check if a number is an Armstrong number**
-- **Determine if the number is even or odd**
-- **Compute the sum of the digits**
-- **Fetch a fun fact about the number**
+- Check if a number is **prime**.
+- Determine if a number is **perfect**.
+- Identify if a number is an **Armstrong number**.
+- Classify numbers as **odd or even**.
+- Calculate the **digit sum** of the number.
+- Fetch an interesting **fun fact** about the number.
 
-## Technologies Used
-- Node.js
-- Express.js
-- Axios
-- CORS
-
-## Installation
-
-1. Clone the repository:
-   ```sh
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd number-properties-api
-   ```
-3. Install dependencies:
-   ```sh
-   npm install
-   ```
-
-## Usage
-
-### Start the Server
-Run the following command to start the server:
-```sh
-node app.js
-```
-The server will start on `http://localhost:3000` by default.
-
-### API Endpoint
-
-#### GET `/?number={num}`
-Retrieves mathematical properties and a fun fact about the given number.
+## Endpoints
+### `GET /`
+Fetches details about a number.
 
 #### Query Parameters
-- `number` (integer) - The number to analyze.
+| Parameter  | Type   | Required | Description                          |
+|------------|--------|----------|--------------------------------------|
+| `number`   | Integer | Yes      | The number to analyze.               |
 
-#### Response Format
+#### Example Request
+```
+GET http://localhost:3000/?number=28
+```
+
+#### Example Response
 ```json
 {
   "number": 28,
@@ -61,36 +37,46 @@ Retrieves mathematical properties and a fun fact about the given number.
 }
 ```
 
-### Example Request
-```
-GET http://localhost:3000/api/v1?number=28
-```
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/number-api.git
+   cd number-api
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the server:
+   ```bash
+   npm start
+   ```
+   The server will run on `http://localhost:3000/`.
+
+## Technologies Used
+- **Node.js** (Express.js for server setup)
+- **Axios** (to fetch number fun facts)
+- **CORS** (to allow cross-origin requests)
 
 ## Error Handling
-- If the query parameter is missing or not a valid number, the API returns:
-  ```json
-  {
-    "number": "invalid",
-    "error": true
-  }
-  ```
-- If an issue occurs while fetching the fun fact, the API returns:
-  ```json
-  {
-    "error": "failed to fetch fun fact"
-  }
-  ```
-
-## Project Structure
+If an invalid number is provided, the API responds with:
+```json
+{
+  "error": "Invalid number provided"
+}
 ```
-number-properties-api/
-│── app.js
-│── controller.js
-│── route.js
-│── package.json
-│── README.md
+If the fun fact API is unavailable, the response will return:
+```json
+{
+  "fun_fact": "Fun fact could not be retrieved"
+}
 ```
 
 
+## License
+This project is licensed under the MIT License.
 
+
+
+Feel free to contribute to this project by submitting pull requests or reporting issues!
 
